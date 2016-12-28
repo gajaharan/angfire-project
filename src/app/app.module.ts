@@ -6,18 +6,30 @@ import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import {firebaseConfig} from "../environments/firebase.config";
+import { HomeComponent } from './home/home.component';
+import {LessonsService} from "./shared/services/lessons.service";
+import { LessonsListComponent } from './lessons-list/lessons-list.component';
+import {routerConfig} from "./router.config";
+import {RouterModule} from "@angular/router";
+import { TopMenuComponent } from './top-menu/top-menu.component';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LessonsListComponent,
+    TopMenuComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    RouterModule.forRoot(routerConfig)
   ],
-  providers: [],
+  providers: [LessonsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

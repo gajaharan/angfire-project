@@ -2,7 +2,7 @@
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
 
-# Installation pre-requisites
+## Installation pre-requisites
 
 For running this project we need and npm installed on our machine. These are some tutorials to install node in different operating systems:
 
@@ -13,13 +13,13 @@ For running this project we need and npm installed on our machine. These are som
 - [Install Node and NPM on Mac](https://www.youtube.com/watch?v=Imj8PgG3bZU)
 
 
-# Installing the Angular CLI
+## Installing the Angular CLI
 
 With the following command the angular-cli will be installed globally in your machine:
 
     npm install -g angular-cli
 
-# Installing the code
+## Installing the code
 
 The code can be installed with the following command (needs to be run in the folder where package.json is):
 
@@ -50,6 +50,11 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Deploying to Github Pages
 
 Run `ng github-pages:deploy` to deploy to Github Pages.
+
+
+##  Populating the database
+
+Run `npm run populate-db` to load dummy data into Firebase database assuming you have setup your Firebase config and setup the Firebase rules to allow any write and read access.
 
 ## Further help
 
