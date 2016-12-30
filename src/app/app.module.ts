@@ -20,6 +20,7 @@ import { EditLessonComponent } from './edit-lesson/edit-lesson.component';
 import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 import { NewLessonComponent } from './new-lesson/new-lesson.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
+import {LessonResolver} from "./shared/services/lesson.resolver";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { LessonFormComponent } from './lesson-form/lesson-form.component';
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routerConfig)
   ],
-  providers: [LessonsService, CoursesService],
+  providers: [LessonsService, CoursesService, LessonResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

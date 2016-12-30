@@ -104,6 +104,19 @@ export class LessonsService {
     return subject.asObservable();
   }
 
+  saveLesson(lessonId:string, lesson): Observable<any> {
+
+    const lessonToSave = Object.assign({}, lesson);
+    delete(lessonToSave.$key);
+
+    let dataToSave = {};
+    dataToSave[`lessons/${lessonId}`] = lessonToSave;
+
+    return this.firebaseUpdate(dataToSave);
+
+
+  }
+
   deleteLesson(lessonId:string): Observable<any> {
 
     const url = firebaseConfig.databaseURL + '/lessons/' + lessonId + '.json';
