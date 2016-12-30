@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import {firebaseConfig} from "../environments/firebase.config";
+import {firebaseConfig, authConfig} from "../environments/firebase.config";
 import { HomeComponent } from './home/home.component';
 import {LessonsService} from "./shared/services/lessons.service";
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
@@ -21,6 +21,10 @@ import { SafeUrlPipe } from './shared/security/safe-url.pipe';
 import { NewLessonComponent } from './new-lesson/new-lesson.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import {LessonResolver} from "./shared/services/lesson.resolver";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import {AuthService} from "./shared/services/auth.service";
+import {AuthGuard} from "./shared/security/auth.guard";
 
 @NgModule({
   declarations: [
@@ -35,16 +39,18 @@ import {LessonResolver} from "./shared/services/lesson.resolver";
     SafeUrlPipe,
     NewLessonComponent,
     LessonFormComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, authConfig),
     RouterModule.forRoot(routerConfig)
   ],
-  providers: [LessonsService, CoursesService, LessonResolver],
+  providers: [LessonsService, CoursesService, LessonResolver, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

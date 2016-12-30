@@ -6,6 +6,9 @@ import {LessonDetailComponent} from "./lesson-detail/lesson-detail.component";
 import {EditLessonComponent} from "./edit-lesson/edit-lesson.component";
 import {NewLessonComponent} from "./new-lesson/new-lesson.component";
 import {LessonResolver} from "./shared/services/lesson.resolver";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
+import {AuthGuard} from "./shared/security/auth.guard";
 
 
 
@@ -49,8 +52,17 @@ export const routerConfig: Route[] = [
       {
         path: '',
         component: LessonDetailComponent,
+        canActivate: [AuthGuard]
       }
     ]
+  },
+  {
+    'path': 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '',
