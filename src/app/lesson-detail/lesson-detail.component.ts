@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LessonsService} from "../shared/services/lessons.service";
 
 @Component({
-  selector: 'app-lesson-detail',
+  selector: 'lesson-detail',
   templateUrl: './lesson-detail.component.html',
   styleUrls: ['./lesson-detail.component.css']
 })
@@ -49,6 +49,13 @@ export class LessonDetailComponent implements OnInit {
   }
 
 
+  delete() {
+    this.lessonsService.deleteLesson(this.lesson.$key)
+      .subscribe(
+        () => alert('Lesson deleted'),
+        console.error
+      );
+  }
 
 
   requestLessonDeletion() {

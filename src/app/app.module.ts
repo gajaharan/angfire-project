@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 
@@ -18,6 +18,8 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { LessonDetailComponent } from './lesson-detail/lesson-detail.component';
 import { EditLessonComponent } from './edit-lesson/edit-lesson.component';
 import { SafeUrlPipe } from './shared/security/safe-url.pipe';
+import { NewLessonComponent } from './new-lesson/new-lesson.component';
+import { LessonFormComponent } from './lesson-form/lesson-form.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,15 @@ import { SafeUrlPipe } from './shared/security/safe-url.pipe';
     CourseDetailComponent,
     LessonDetailComponent,
     EditLessonComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    NewLessonComponent,
+    LessonFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routerConfig)
   ],

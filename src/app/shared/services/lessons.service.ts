@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import {Lesson} from "./lesson";
 import {firebaseConfig} from "../../../environments/firebase.config";
 import {Http} from "@angular/http";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class LessonsService {
@@ -69,6 +70,39 @@ export class LessonsService {
 
   }
 
+  createNewLesson(courseId:string, lesson:any): Observable<any> {
+
+    const lessonToSave = Object.assign({}, lesson, {courseId});
+
+    const newLessonKey = this.sdkDb.child('lessons').push().key;
+
+    let dataToSave = {};
+
+    dataToSave["lessons/" + newLessonKey] = lessonToSave;
+    dataToSave[`lessonsPerCourse/${courseId}/${newLessonKey}`] = true;
+
+
+    return this.firebaseUpdate(dataToSave);
+  }
+
+  firebaseUpdate(dataToSave) {
+    const subject = new Subject();
+
+    this.sdkDb.update(dataToSave)
+      .then(
+        val => {
+          subject.next(val);
+          subject.complete();
+
+        },
+        err => {
+          subject.error(err);
+          subject.complete();
+        }
+      );
+
+    return subject.asObservable();
+  }
 
   deleteLesson(lessonId:string): Observable<any> {
 
@@ -84,5 +118,7 @@ export class LessonsService {
         () => alert('lesson deletion requested !')
       );
   }
+
+
 
 }

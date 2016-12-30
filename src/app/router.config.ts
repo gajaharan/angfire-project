@@ -4,6 +4,7 @@ import {CoursesComponent} from "./courses/courses.component";
 import {CourseDetailComponent} from "./course-detail/course-detail.component";
 import {LessonDetailComponent} from "./lesson-detail/lesson-detail.component";
 import {EditLessonComponent} from "./edit-lesson/edit-lesson.component";
+import {NewLessonComponent} from "./new-lesson/new-lesson.component";
 
 
 
@@ -17,7 +18,16 @@ export const routerConfig: Route[] = [
     children: [
       {
         path: ':id',
-        component: CourseDetailComponent
+        children: [
+          {
+            path: '',
+            component: CourseDetailComponent
+          },
+          {
+            path: 'new',
+            component: NewLessonComponent
+          }
+        ]
       },
       {
         path: '',
